@@ -1,0 +1,66 @@
+version: '3'
+services:
+  server:
+    build:
+      dockerfile: Dockerfile.server
+    container_name: gcloud-server
+    logging:
+      options:
+        max-size: 100m
+    depends_on:
+      mysql:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+    environment:
+      - MAIL_ACCOUNT=${MAIL_ACCOUNT}
+      - MAIL_PASSWORD=${MAIL_PASSWORD}
+      - REDIS_ADDR=${REDIS_ADDR}
+      - MYSQL_ADDR=${MYSQL_ADDR}
+      - MYSQL_USER=${MYSQL_USER}
+      - MYSQL_PASSWORD=${MYSQL_PASSWORD}
+      - TENCENT_SECRETKEY=${TENCENT_SECRETKEY}
+      - TENCENT_SECRETID=${TENCENT_SECRETID}
+    networks:
+      - gcloud-network
+  web:
+    build:
+      dockerfile: Dockerfile.web
+    volumes:
+      - ./nginx/logs:/var/log/nginx
+    depends_on: 
+      - server
+    networks:
+      - gcloud-network
+  mysql:
+    image: mysql
+    container_name: gcloud-mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: JW4Zz6oHArMV
+      MYSQL_DATABASE: gcloud
+      MYSQL_USER: gcloud
+      MYSQL_PASSWORD: toD9GEdVpDRq 
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost"]
+      timeout: 10s
+      retries: 3
+    volumes:
+      - ./mysql/data:/var/lib/mysql
+      - ./server/sql:/docker-entrypoint-initdb.d
+    networks:
+      - gcloud-network
+  redis:
+    image: redis:alpine
+    container_name: gcloud-redis
+    command: redis-server --requirepass ''
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      timeout: 5s
+      interval: 10s
+      retries: 3
+    networks:
+      - gcloud-network
+
+networks:
+  gcloud-network:
+    driver: bridge

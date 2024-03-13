@@ -1,0 +1,12 @@
+.idea
+nginx/logs
+mysql
+web/dist
+node_modules
+.DS_Store
+
+*.local
+
+.cz-config.js
+
+.env.development

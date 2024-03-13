@@ -1,0 +1,25 @@
+# builder
+FROM golang:alpine3.18 as builder
+
+WORKDIR /app
+
+COPY ./server /app
+
+ARG SERVICE_NAME
+
+ENV GO111MODULE=auto
+ENV GOPROXY=https://goproxy.cn,direct
+RUN cd /app && \
+	go mod tidy && \
+	go build -o ./server-go /app/core/core.go && \
+	chmod +x server-go 
+
+# runner
+FROM alpine:latest
+
+WORKDIR /app
+COPY --from=builder /app/server-go /app/server-go
+COPY --from=builder /app/core/etc/core-api.yaml /app/core-api.yaml
+
+ENTRYPOINT ["/app/server-go", "-f", "/app/core-api.yaml"]
+

@@ -1,0 +1,34 @@
+.n-statistic .n-statistic-value .n-statistic-value__content {
+  font-size: 12px;
+}
+.n-divider:not(.n-divider--vertical) {
+  margin-top: 12px;
+  margin-bottom: 12px;
+}
+.n-tree-node-content__text {
+  -moz-user-select: none;
+  -webkit-user-select: none;
+  user-select: none !important;
+}
+.n-alert .n-alert-body {
+  border: none;
+}
+
+// attention-inter.vue
+.n-message {
+  max-width: 420px;
+}
+
+.n-modal-mask,
+.n-drawer-mask {
+  backdrop-filter: blur(3px);
+  -webkit-backdrop-filter: blur(3px);
+}
+
+.n-drawer .n-drawer-content .n-drawer-body-content-wrapper {
+  padding: 16px 24px;
+}
+
+.v-md-editor.v-md-editor--edit {
+  box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05), 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+}
