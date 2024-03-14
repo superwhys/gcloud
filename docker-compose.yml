@@ -38,8 +38,8 @@ services:
     environment:
       MYSQL_ROOT_PASSWORD: JW4Zz6oHArMV
       MYSQL_DATABASE: gcloud
-      MYSQL_USER: gcloud
-      MYSQL_PASSWORD: toD9GEdVpDRq 
+      MYSQL_USER: ${MYSQL_USER}
+      MYSQL_PASSWORD: ${MYSQL_PASSWORD} 
     healthcheck:
       test: ["CMD", "mysqladmin", "ping", "-h", "localhost"]
       timeout: 10s
