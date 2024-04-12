@@ -29,7 +29,7 @@
       <n-scrollbar style="max-height: calc(100vh - 109px)">
         <div class="bg-header shadow rounded py-2 mb-4">
           <div class="m-3">
-            <n-h5 prefix="bar" class="rounded text-sm"> G社是啥捏 </n-h5>
+            <n-h5 prefix="bar" class="rounded text-sm"> Golang技术论坛是啥捏 </n-h5>
             <Introduction />
           </div>
           <n-divider />

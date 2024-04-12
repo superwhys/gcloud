@@ -1,6 +1,6 @@
 <template>
   <div class="flex justify-between items-center top-0" style="position: sticky">
-    <n-h5 prefix="bar" class="w-full text-primary bg-header shadow-sm rounded p-2 mt-0 mb-0">
+    <n-h5 prefix="bar" class="w-full text-primary bg-header shadow-sm rounded p-2 mt-0 mb-0" :style="{display: showTitle? 'block':'none'}">
       回收站 {{ deleted_files.length !== 0 ? `(${deleted_files.length})` : '' }}
     </n-h5>
     <n-button-group class="ml-auto mt-1">
@@ -48,7 +48,7 @@
 </template>
 
 <script setup lang="ts">
-import { defineAsyncComponent, ref } from 'vue';
+import { defineAsyncComponent, ref, defineProps } from 'vue';
 import { storeToRefs } from 'pinia';
 import { useFiles } from '@/hooks/useFiles';
 import {
@@ -65,9 +65,17 @@ import { transformSize } from '@/utils/transform-size';
 import { compareDate, transformDate } from '@/utils/date';
 import { FileListData } from '@/models/file';
 import { onInfo } from '@/utils/messages';
+
 const Empty = defineAsyncComponent(() => import('@/components/commons/empty/index.vue'));
 
 const { fileStore } = useFiles();
+
+const props = defineProps({
+  showTitle: {
+    type: Boolean,
+    default: true
+  }
+})
 
 const checked_file_ids = ref<string[]>([]);
 

@@ -62,7 +62,9 @@ const currentRoute = computed(() => router.currentRoute.value.name ?? 'home');
 
 const tabs = ref([
   { name: 'home', label: '主页', path: '/home' },
-  { name: 'community', label: 'G社', path: '/community' },
+  { name: 'community', label: 'Golang技术交流论坛', path: '/community' },
+  { name: 'cloud', label: '云盘动态', path: '/cloud' },
+  { name: 'garbage', label: '回收站', path: '/garbage' },
 ]);
 const logoUrl = ref(Logo);
 </script>

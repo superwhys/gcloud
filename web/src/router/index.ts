@@ -3,6 +3,8 @@ import { createRouter, RouteRecordRaw, createWebHashHistory } from 'vue-router';
 const Layouts = () => import('@/pages/layouts/index.vue');
 const Home = () => import('@/pages/home/index.vue');
 const Community = () => import('@/pages/community/index.vue');
+const Cloud = () => import('@/pages/cloud/index.vue');
+const Garbage = () => import('@/pages/garbage/index.vue');
 const Share = () => import('@/pages/share/index.vue');
 const Posts = () => import('@/pages/community/posts-detail/index.vue');
 const Sign = () => import('@/pages/sign/index.vue');
@@ -36,6 +38,22 @@ const routes: RouteRecordRaw[] = [
         path: '/community',
         name: 'community',
         component: Community,
+        meta: {
+          keepAlive: true,
+        },
+      },
+      {
+        path: '/cloud',
+        name: 'cloud',
+        component: Cloud,
+        meta: {
+          keepAlive: true,
+        },
+      },
+      {
+        path: '/garbage',
+        name: 'garbage',
+        component: Garbage,
         meta: {
           keepAlive: true,
         },
