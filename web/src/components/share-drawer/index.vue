@@ -93,7 +93,7 @@ const renderMessage: MessageRenderMessage = props => {
               onVnodeMounted: async () => {
                 if (shareStore.current_sharing_file_identity !== '') {
                   await toClipboard(
-                    `https://gcloud.website/#/s/${shareStore.current_sharing_file_identity}`
+                    `http://1.14.159.37:28080/#/s/${shareStore.current_sharing_file_identity}`
                   );
                 }
               },
